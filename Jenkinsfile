@@ -11,6 +11,7 @@ pipeline {
                 dir('TP1_marching_squares') {
                     sh 'python3 marching-squares.py'
                 }
+                /*
                 dir('TP3_mendelbrot') {
                     // avec SDL_VIDEODRIVER
                     script {
@@ -19,6 +20,7 @@ pipeline {
                         sh 'sudo SDL_VIDEODRIVER=$SDL_VIDEODRIVER python3 Koch.py'
                     }
                 }
+                */
             }
         }
     }
