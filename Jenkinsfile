@@ -2,20 +2,25 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone du dépôt') {
-            steps {
-                git 'https://github.com/eisenhowair/Modelisation3D.git'
-            }
-        }
         stage('Installation des dépendances') {
             steps {
-                sh 'python3 -m pip install --upgrade pip'
-                //sh 'pip3 install -r requirements.txt'
+                dir('Reconstruction3D') {
+                    sh 'python3 -m pip install --upgrade pip'
+                    //sh 'pip3 install -r requirements.txt'
+                }
             }
         }
         stage('Build et Test') {
             steps {
-                sh 'python3 -m unittest discover -s tests -p "test_*.py"'
+                dir('TP1_marching_squares') {
+                    sh 'python3 marching-squares.py'
+                    sh 'python3 test_2D_to_3D.py'
+                }
+                dir('TP3_mendelbrot') {
+                    sh 'python3 Mendelbrot.py'
+                    sh 'python3 Julia.py'
+                    sh 'python3 Koch.py'
+                }
             }
         }
     }
