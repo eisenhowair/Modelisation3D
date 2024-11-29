@@ -6,15 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Installation des dépendances') {
-            steps {
-                dir('Reconstruction3D') {
-                    sh 'python3 -m pip install --upgrade pip'
-                    //sh 'pip3 install -r requirements.txt'
-                }
-            }
-        }
-
         stage('Build et Test') {
             steps {
                 dir('TP1_marching_squares') {
