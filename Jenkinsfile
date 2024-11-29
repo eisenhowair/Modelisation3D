@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        SDL_VIDEODRIVER = 'x11' // xhost +SI:localuser:jenkins (pour que jenkins puisse utiliser x11)
+    }
+
     stages {
         stage('Installation des dépendances') {
             steps {
@@ -10,15 +14,19 @@ pipeline {
                 }
             }
         }
+
         stage('Build et Test') {
             steps {
                 dir('TP1_marching_squares') {
                     sh 'python3 marching-squares.py'
                 }
                 dir('TP3_mendelbrot') {
-                    sh 'python3 Mendelbrot.py'
-                    sh 'python3 Julia.py'
-                    sh 'python3 Koch.py'
+                    // avec SDL_VIDEODRIVER
+                    script {
+                        sh 'sudo SDL_VIDEODRIVER=$SDL_VIDEODRIVER python3 Mendelbrot.py'
+                        sh 'sudo SDL_VIDEODRIVER=$SDL_VIDEODRIVER python3 Julia.py'
+                        sh 'sudo SDL_VIDEODRIVER=$SDL_VIDEODRIVER python3 Koch.py'
+                    }
                 }
             }
         }
