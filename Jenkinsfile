@@ -14,7 +14,6 @@ pipeline {
             steps {
                 dir('TP1_marching_squares') {
                     sh 'python3 marching-squares.py'
-                    sh 'python3 test_2D_to_3D.py'
                 }
                 dir('TP3_mendelbrot') {
                     sh 'python3 Mendelbrot.py'
