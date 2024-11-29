@@ -15,9 +15,9 @@ pipeline {
                     // avec SDL_VIDEODRIVER
                     script {
                         withEnv(['SDL_VIDEODRIVER=x11']) {
-                            sh 'python3 Mendelbrot.py'
-                            sh 'python3 Julia.py'
-                            sh 'python3 Koch.py'
+                            sh 'xvfb-run -a python3 Mendelbrot.py'
+                            sh 'xvfb-run -a python3 Julia.py'
+                            sh 'xvfb-run -a python3 Koch.py'
                         }
                     }
                 }
