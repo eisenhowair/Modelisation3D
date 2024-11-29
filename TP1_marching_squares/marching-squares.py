@@ -123,7 +123,11 @@ class MarchingSquares:
 
 def main():
     image_path = "images_test/096833.jpg"
-    grid_size = int(sys.argv[1])  # Nombre de zones qui divisent l'image
+
+    if len(sys.argv) > 1:
+        grid_size = 5
+    else:
+        grid_size = int(sys.argv[1])  # Nombre de zones qui divisent l'image
     nom_image = image_path.replace("images_test/", "").replace(".jpg", "")
     output_path = f"resultat_{nom_image}.png"  # Optionnel
     print(output_path)
