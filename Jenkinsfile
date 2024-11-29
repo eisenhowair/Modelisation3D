@@ -14,9 +14,11 @@ pipeline {
                 dir('TP3_mendelbrot') {
                     // avec SDL_VIDEODRIVER
                     script {
-                        sh 'sudo SDL_VIDEODRIVER=$SDL_VIDEODRIVER python3 Mendelbrot.py'
-                        sh 'sudo SDL_VIDEODRIVER=$SDL_VIDEODRIVER python3 Julia.py'
-                        sh 'sudo SDL_VIDEODRIVER=$SDL_VIDEODRIVER python3 Koch.py'
+                        withEnv(['SDL_VIDEODRIVER=x11']) {
+                            sh 'python3 Mendelbrot.py'
+                            sh 'python3 Julia.py'
+                            sh 'python3 Koch.py'
+                        }
                     }
                 }
             }
